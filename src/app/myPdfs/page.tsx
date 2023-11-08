@@ -23,7 +23,7 @@ interface EditProps {
     name: string;
 }
 
-const page = () => {
+const Page1 = () => {
 
     pdfjs.GlobalWorkerOptions.workerSrc = `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.min.js`;
 
@@ -138,4 +138,4 @@ const page = () => {
     )
 }
 
-export default page
+export default Page1;

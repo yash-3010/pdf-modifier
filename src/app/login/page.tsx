@@ -66,7 +66,7 @@ export default function Home() {
           <button className="block mt-6 w-full text-center p-4 font-semibold rounded-md text-white bg-[#00BFFF] hover:bg-[#00bfffbb]" disabled={user.email.length === 0 || user.password.length === 0 || loading} onClick={login} type="submit">{loading ? "Loading..." : 'Login'}</button>
         </form>
         <p className="text-center w-full p-4">
-          <Link className="text-center" href='/signup'>Don't have an account yet? <span className="text-blue-500 font-semibold">Sign Up</span></Link>
+          <Link className="text-center" href='/signup'>Don`&apos;`t have an account yet? <span className="text-blue-500 font-semibold">Sign Up</span></Link>
         </p>
       </div>
     </div>

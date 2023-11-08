@@ -143,9 +143,8 @@ const PdfPageSelector = ({ url, id }: Props) => {
                     swipeable
                 >
                     {Array.from({ length: numPages }, (_, index) => (
-                        <div onClick={() => handlePageSelect(index + 1)} className={`md:overflow-hidden overflow-auto relative shadow-[0_3px_10px_rgb(0,0,0,0.2)] cursor-pointer rounded-md p-1 md:w-[400px] mx-5 md:mx-[100px] lg:mx-[25px] ${selectedPages.includes(index + 1) ? 'border-4 border-[#055C9D]' : 'border-2 border-gray-500'}`}>
+                        <div key={index + 1} onClick={() => handlePageSelect(index + 1)} className={`md:overflow-hidden overflow-auto relative shadow-[0_3px_10px_rgb(0,0,0,0.2)] cursor-pointer rounded-md p-1 md:w-[400px] mx-5 md:mx-[100px] lg:mx-[25px] ${selectedPages.includes(index + 1) ? 'border-4 border-[#055C9D]' : 'border-2 border-gray-500'}`}>
                             <Page
-                                key={index + 1}
                                 pageNumber={index + 1}
                                 renderTextLayer={false}
                                 width={390}
