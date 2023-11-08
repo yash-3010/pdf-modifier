@@ -29,7 +29,6 @@ export default function Home() {
   const [iCanSeePassword, setiCanSeePassword] = useState<boolean>(false);
 
   useEffect(() => {
-    // if (user.name.length > 0 && user.email.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/) && user.password.match(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/)) {
     if (user.name.length > 0 && user.email.length > 0 && user.password.length > 0) {
       setvalid(true);
   } else {

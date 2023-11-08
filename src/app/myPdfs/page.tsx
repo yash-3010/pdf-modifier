@@ -72,7 +72,7 @@ const Page1 = () => {
 
     useEffect(() => {
         getUsersPdfs();
-    }, [loading, userData])
+    }, [loading, userData, getUsersPdfs])
 
 
     return (
@@ -122,7 +122,7 @@ const Page1 = () => {
                         </div>
                         <div className="p-6 space-y-6">
                             <p className="text-base leading-relaxed text-gray-500">
-                                If you delete this PDF, you won't be able to recover it and you have to upload it again.
+                                If you delete this PDF, you won&apos;t be able to recover it and you have to upload it again.
                                 We suggest you to download it before deleting.
                             </p>
                         </div>
