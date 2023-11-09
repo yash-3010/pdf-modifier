@@ -8,27 +8,36 @@ export async function middleware(request: NextRequest) {
     const isPublic = pathname === '/login' || pathname === '/signup';
 
     // verify token
-    // const verifiedToken = await verifyToken(request).catch((err) => {
-    //     console.error(err.message)
-    // })
+    const verifiedToken = await verifyToken(request).catch((err) => {
+        console.error(err.message)
+    })
 
-    const verifiedToken = request.cookies.get('token')?.value
-
-    if (!isPublic && !verifiedToken) {
-        return NextResponse.redirect(new URL('/login', request.url))
+    if(isPublic){
+        if(verifiedToken){
+            return NextResponse.redirect(new URL('/', request.url));
+        }
+        else{
+            return NextResponse.next();
+        }
+    }
+    else{
+        if(verifiedToken){
+            return NextResponse.next();
+        }
+        else{
+            return NextResponse.redirect(new URL('/login', request.url));
+        }
     }
 
-    if (isPublic && verifiedToken) {
-        return NextResponse.redirect(new URL('/', request.url))
-    }
+
 }
 
 // See "Matching Paths" below to learn more
 export const config = {
     matcher: [
         '/',
-        // '/login',
-        // '/signup',
+        '/login',
+        '/signup',
         '/myPdfs(.*)',
         '/downloadPdf(.*)',
         '/modifyPdf(.*)',
