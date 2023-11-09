@@ -1,36 +1,78 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+<p align="center">
+  <a href="https://nextjs.org">
+    <picture>
+      <source media="(prefers-color-scheme: dark)" srcset="https://assets.vercel.com/image/upload/v1662130559/nextjs/Icon_dark_background.png">
+      <img src="https://assets.vercel.com/image/upload/v1662130559/nextjs/Icon_light_background.png" height="128">
+    </picture>
+    <h1 align="center">Next.js</h1>
+  </a>
+    <p align="center">- Yash Barman <a align="center" href="https://www.yashbarman.me/">Website</a></p>
+</p>
 
-## Getting Started
+# Next.js Pdf Modifier
 
-First, run the development server:
+This is the frontend for the pdf modifier app. It is built with Next.js and React.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+Backend: **https://github.com/yash-kreeti/server**
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+* Authentication via JWT and next-js serverless functions.
+* Has login and signup pages.
+* User can upload a pdf file and modify it.
+* Download the modified pdf file.
+* Users can see their uploaded files in the dashboard under mypdfs tab.
+* Users can delete their uploaded files also.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+You can see a live demo at **https://pdf-modifier.vercel.app/**
 
-## Learn More
 
-To learn more about Next.js, take a look at the following resources:
+## About
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+* This project is built with Next.js and React.
+* It uses next-js serverless functions for backend.
+* It uses react-hook-form for form validation.
+* It uses react-pdf for pdf rendering.
+* It uses react-toastify for toast notifications.
+* It uses react-icons for icons.
+* It uses react-dropzone for drag and drop functionality.
+* It uses react-loader-spinner for loading spinner.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
 
-## Deploy on Vercel
+## Running locally in development mode
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+To get started, just clone the repository and run `npm install && npm run dev`:
+
+    git clone https://github.com/yash-kreeti/pdf-modifier.git
+    npm install
+    npm run dev
+
+Note: If you are running on Windows run install --noptional flag (i.e. `npm install --no-optional`) which will skip installing fsevents.
+
+## Configuring environment variables
+
+You have to configure your environment variables in the `.env.` file.
+
+### Example `.env` file:
+``````
+MONGODB_URL="mongodb+srv://yourmongodburl"
+TOKEN_SECRET = "yourtokensecret"
+```````
+
+## Deploying to Vercel
+
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme).
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+
+## Building and deploying in production
+
+If you wanted to run this site in production, you should install modules then build the site with `npm run build` and run it with `npm start`:
+
+    npm install
+    npm run build
+    npm start
+
+You should run `npm run build` again any time you make changes to the site.
+
+
+### Backend of this Project is at **https://github.com/yash-kreeti/server**

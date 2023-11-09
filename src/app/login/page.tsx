@@ -32,8 +32,8 @@ export default function Home() {
       setloading(true);
       const res = await axios.post("/api/users/login", user);
       console.log(res.data);
-      await getUserData();
       router.push("/");
+      await getUserData();
       toast.success(res.data.message);
 
     } catch (error: any) {

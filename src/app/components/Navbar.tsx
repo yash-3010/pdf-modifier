@@ -24,8 +24,8 @@ const Navbar = () => {
         try {
             const res = await axios.get('/api/users/logout');
             console.log(res.data);
-            await getUserData();
             router.push('/login');
+            await getUserData();
             toast.success(res.data.message)
         } catch (error: any) {
             console.log(error);
