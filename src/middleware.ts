@@ -12,13 +12,11 @@ export async function middleware(request: NextRequest) {
         console.error(err.message)
       })
 
-      console.log(verifiedToken);
-
-    if(!isPublic && verifiedToken===undefined) {
+    if(!isPublic && !verifiedToken) {
         return NextResponse.redirect(new URL('/login', request.url))
     }
 
-    if(isPublic && !verifiedToken===undefined) {
+    if(isPublic && verifiedToken) {
         return NextResponse.redirect(new URL('/', request.url))
     }
 
@@ -30,7 +28,7 @@ export const config = {
         '/',
         '/signup',
         '/login',
-        
+        '/myPdfs(.*)',
         '/downloadPdf(.*)',
         '/modifyPdf(.*)',
     ]

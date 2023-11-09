@@ -7,6 +7,8 @@ import PdfViewer from "./components/PdfViewer";
 import { useRouter } from 'next/navigation';
 import { FileUploader } from "react-drag-drop-files";
 import { GlobalContext } from './context/context';
+import { set } from 'mongoose';
+import { ClockLoader } from 'react-spinners';
 
 export default function Home() {
 
@@ -14,6 +16,7 @@ export default function Home() {
 
   const [pdfupload, setpdfupload] = useState<File | undefined>(undefined);
   const [pdfUrl, setpdfUrl] = useState<string>('');
+  const [loading, setloading] = useState<boolean>(false);
 
   const router = useRouter();
 
@@ -23,6 +26,7 @@ export default function Home() {
   }
 
   const handleUpload = async () => {
+    setloading(true);
     const formData = new FormData();
     formData.append('pdf', pdfupload as Blob);
     formData.append('userId', userData._id);
@@ -38,9 +42,11 @@ export default function Home() {
         router.push(`/modifyPdf?id=${encodeURIComponent(json.id)}&name=${encodeURIComponent(json.name)}`);
       } else {
         console.log('File upload failed');
+        setloading(false);
       }
     } catch (error) {
       console.error('Error uploading file:', error);
+      setloading(false);
     }
   };
 
@@ -89,6 +95,9 @@ export default function Home() {
           </div>
         </div>
       }
+      {loading && <div className="fixed top-0 left-0 right-0 z-50 w-full p-4 overflow-x-hidden bg-gray-500/25 grid place-items-center backdrop-blur-md overflow-y-auto md:inset-0 h-screen max-h-full">
+        <ClockLoader color="#003B73" />
+      </div>}
     </div>
   )
 }

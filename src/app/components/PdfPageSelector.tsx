@@ -7,6 +7,7 @@ import { useRouter } from 'next/navigation';
 import { GlobalContext } from '../context/context';
 import toast from 'react-hot-toast';
 import { IoArrowBackCircleSharp } from 'react-icons/io5';
+import { ClockLoader } from 'react-spinners';
 
 interface Props {
     url: string;
@@ -22,6 +23,7 @@ const PdfPageSelector = ({ url, id }: Props) => {
 
     const [selectedPages, setSelectedPages] = useState<number[]>([]);
     const [numPages, setNumPages] = useState(0);
+    const [loading, setloading] = useState<boolean>(false);
 
     const handlePageSelect = (pageNumber: number) => {
         if (selectedPages.includes(pageNumber)) {
@@ -40,7 +42,7 @@ const PdfPageSelector = ({ url, id }: Props) => {
     }, [url]);
 
     const handleExtract = async () => {
-
+        setloading(true);
         const data = JSON.stringify({
             id: id,
             selectedPageNumbers: selectedPages,
@@ -66,9 +68,11 @@ const PdfPageSelector = ({ url, id }: Props) => {
             } else {
                 console.log('PDF extraction failed');
                 toast.error('PDF extraction failed');
+                setloading(false);
             }
         } catch (error) {
             console.error('Error extracting PDF:', error);
+            setloading(false);
         }
     };
 
@@ -77,7 +81,7 @@ const PdfPageSelector = ({ url, id }: Props) => {
             <div className='w-full mx-auto max-w-[1366px] border-b-2 px-6 py-3'>
                 <div className='flex justify-between'>
                     <span className='flex gap-3 my-auto'>
-                        <IoArrowBackCircleSharp onClick={()=>router.back()} className='text-4xl cursor-pointer' />
+                        <IoArrowBackCircleSharp onClick={() => router.back()} className='text-4xl cursor-pointer' />
                         <h1 className='hidden md:block md:text-3xl tracking-wide'>Select Pages</h1>
                     </span>
                     <div className='flex gap-5'>
@@ -157,6 +161,9 @@ const PdfPageSelector = ({ url, id }: Props) => {
 
                 </Carousel>
             </Document>
+            {loading && <div className="fixed top-0 left-0 right-0 z-50 w-full p-4 overflow-x-hidden bg-gray-500/25 grid place-items-center backdrop-blur-md overflow-y-auto md:inset-0 h-screen max-h-full">
+                <ClockLoader color="#003B73" />
+            </div>}
         </div>
     );
 };
