@@ -28,7 +28,6 @@ export const config = {
         '/',
         '/login',
         '/signup',
-        '/api/users/data',
         '/downloadPdf(.*)',
         '/myPdfs',
         '/modifyPdf(.*)',
