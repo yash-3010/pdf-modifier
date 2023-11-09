@@ -12,12 +12,14 @@ export async function middleware(request: NextRequest) {
         console.error(err.message)
       })
 
-    if(!isPublic && !verifiedToken) {
-        return NextResponse.rewrite(new URL('/login', request.url))
+      console.log(verifiedToken);
+
+    if(!isPublic && verifiedToken===undefined) {
+        return NextResponse.redirect(new URL('/login', request.url))
     }
 
-    if(isPublic && verifiedToken) {
-        return NextResponse.rewrite(new URL('/', request.url))
+    if(isPublic && !verifiedToken===undefined) {
+        return NextResponse.redirect(new URL('/', request.url))
     }
 
 }
@@ -26,10 +28,10 @@ export async function middleware(request: NextRequest) {
 export const config = {
     matcher: [
         '/',
-        '/login',
         '/signup',
+        '/login',
+        
         '/downloadPdf(.*)',
-        '/myPdfs',
         '/modifyPdf(.*)',
     ]
 }
