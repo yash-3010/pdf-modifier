@@ -13,11 +13,11 @@ export async function middleware(request: NextRequest) {
       })
 
     if(!isPublic && !verifiedToken) {
-        return NextResponse.redirect(new URL('/login', request.url))
+        return NextResponse.rewrite(new URL('/login', request.url))
     }
 
     if(isPublic && verifiedToken) {
-        return NextResponse.redirect(new URL('/', request.url))
+        return NextResponse.rewrite(new URL('/', request.url))
     }
 
 }
