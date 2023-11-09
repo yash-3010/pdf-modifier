@@ -48,6 +48,8 @@ export async function POST(req: NextRequest) {
             secure: true,
         });
 
+        response.headers.set("Cache-Control", "private, no-cache, no-store, must-revalidate");
+
         return response;
     } catch (error) {
         return NextResponse.json({ message: "Something went wrong" }, { status: 500 });

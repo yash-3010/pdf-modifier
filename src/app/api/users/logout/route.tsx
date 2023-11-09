@@ -12,6 +12,9 @@ export async function GET(){
             expires: new Date(0),
         });
 
+        // cache control
+        res.headers.set("Cache-Control", "private, no-cache, no-store, must-revalidate");
+
         return res;
 
     } catch (error: any) {
