@@ -36,8 +36,6 @@ const Page1 = () => {
     const [confirmDelete, setconfirmDelete] = useState<boolean>(false);
     const [pdfId, setpdfId] = useState<string | undefined>(undefined);
 
-    console.log(process.env.SERVER_URL);
-
     const getUsersPdfs = async () => {
         if (!userData) return;
         try {
