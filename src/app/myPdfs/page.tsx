@@ -70,7 +70,7 @@ const Page1 = () => {
 
     useEffect(() => {
         getUsersPdfs();
-    }, [loading, userData, getUsersPdfs])
+    }, [loading, userData])
 
 
     return (
