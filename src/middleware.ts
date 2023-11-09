@@ -21,6 +21,8 @@ export async function middleware(request: NextRequest) {
     if (isPublic && verifiedToken) {
         return NextResponse.redirect(new URL('/', request.url))
     }
+
+    return NextResponse.next()
 }
 
 // See "Matching Paths" below to learn more
