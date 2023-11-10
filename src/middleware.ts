@@ -3,39 +3,41 @@ import type { NextRequest } from 'next/server'
 import { verifyToken } from './helpers/verifyToken';
 
 export async function middleware(request: NextRequest) {
-    const { pathname } = request.nextUrl;
+    // const { pathname } = request.nextUrl;
 
-    const isPublic = pathname === '/login' || pathname === '/signup';
-    const isPrivate = pathname === '/myPdfs' || pathname === '/downloadPdf' || pathname === '/modifyPdf' || pathname === '/';
+    // const isPublic = pathname === '/login' || pathname === '/signup';
+    // const isPrivate = pathname === '/myPdfs' || pathname === '/downloadPdf' || pathname === '/modifyPdf' || pathname === '/';
 
     // verify token
     const verifiedToken = await verifyToken(request).catch((err) => {
         console.error(err.message)
     })
 
-    if (isPrivate && !verifiedToken) {
+    if (!verifiedToken && request.nextUrl.pathname !== '/login' && request.nextUrl.pathname !== '/signup') {
         return NextResponse.redirect(new URL('/login', request.url));
     }
-
-    else if (isPublic && verifiedToken) {
-        return NextResponse.redirect(new URL('/', request.url));
-    }
-
-    else {
+    else{
         return NextResponse.next();
     }
+
+    // else if (isPublic && verifiedToken) {
+    //     return NextResponse.redirect(new URL('/', request.url));
+    // }
+
+    // else {
+    //     return NextResponse.next();
+    // }
 
 
 
 }
 
 // See "Matching Paths" below to learn more
-// export const config = {
-//     matcher: [
-//         '/login',
-//         '/signup',
-//         '/myPdfs(.*)',
-//         '/downloadPdf(.*)',
-//         '/modifyPdf(.*)',
-//     ]
-// }
+export const config = {
+    matcher: [
+        '/',
+        '/myPdfs(.*)',
+        '/downloadPdf(.*)',
+        '/modifyPdf(.*)',
+    ]
+}
