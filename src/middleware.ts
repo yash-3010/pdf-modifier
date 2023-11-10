@@ -13,12 +13,16 @@ export async function middleware(request: NextRequest) {
         console.error(err.message)
     })
 
-    if(isPrivate && !verifiedToken) {
+    if (isPrivate && !verifiedToken) {
         return NextResponse.redirect(new URL('/login', request.url));
     }
 
-    if(isPublic && verifiedToken) {
+    else if (isPublic && verifiedToken) {
         return NextResponse.redirect(new URL('/', request.url));
+    }
+
+    else {
+        return NextResponse.next();
     }
 
 
